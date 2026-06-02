@@ -67,3 +67,60 @@
   height: 2.25rem;
   object-fit: contain;
 }
+
+.project-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-padding-inline: 0;
+  scroll-snap-type: x mandatory;
+}
+
+.project-scroll-item {
+  flex: 0 0 calc((100% - 3rem) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.project-card {
+  min-height: 100%;
+}
+
+.project-cover-carousel {
+  border-top-left-radius: var(--bs-card-inner-border-radius);
+  border-top-right-radius: var(--bs-card-inner-border-radius);
+  overflow: hidden;
+}
+
+.project-cover-image {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-cover-carousel .carousel-control-prev,
+.project-cover-carousel .carousel-control-next {
+  width: 14%;
+}
+
+.project-cover-carousel .carousel-indicators {
+  margin-bottom: 0.4rem;
+}
+
+.project-tech-icon {
+  height: 1.75rem;
+  object-fit: contain;
+  width: 1.75rem;
+}
+
+@media (max-width: 991.98px) {
+  .project-scroll-item {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .project-scroll-item {
+    flex-basis: 88%;
+  }
+}

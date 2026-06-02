@@ -5,29 +5,106 @@ import limagroupLogo from '../assets/limagroup.png'
 
 const profileImage = georgeImage
 
-const projectOptions = ['Software', 'Video Games', 'Plugins']
+const projectOptions = ['All', 'Software', 'Video Games', 'Plugins']
+
+const technologyIcons = {
+  C: 'https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg',
+  Java: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg',
+  PHP: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
+  HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+  CSS: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
+  TypeScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg',
+  JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
+  Angular: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+  PostgreSQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg',
+  MySQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
+  Git: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
+  GitHub: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg',
+}
+
+const projectImage = (project, view) =>
+  `https://placehold.co/640x420/06224a/ffffff?text=${encodeURIComponent(
+    `${project} ${view}`,
+  )}`
+
+const projectGallery = (project, views) =>
+  views.map((view) => ({
+    src: projectImage(project, view),
+    alt: `${project} ${view} preview`,
+  }))
 
 const projects = [
   {
     title: 'LimaGroup',
     category: 'Software',
-    image: 'https://placehold.co/720x420/06224a/ffffff?text=LimaGroup',
     description:
       'A clean business website sample with simple navigation, service sections, and a contact-focused layout.',
+    galleryImages: projectGallery('LimaGroup', [
+      'Home',
+      'Services',
+      'Contact',
+      'Mobile',
+    ]),
+    technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
+    websiteUrl: 'https://www.google.com',
   },
   {
     title: 'Waspee',
     category: 'Software',
-    image: 'https://placehold.co/720x420/06224a/ffffff?text=Waspee',
     description:
       'A sample productivity dashboard concept designed for clear tasks, quick decisions, and reliable data display.',
+    galleryImages: projectGallery('Waspee', [
+      'Dashboard',
+      'Tasks',
+      'Calendar',
+      'Reports',
+    ]),
+    technologies: ['TypeScript', 'React', 'Node.js', 'PostgreSQL'],
+    websiteUrl: 'https://www.google.com',
   },
   {
     title: 'LetsFindPeople',
     category: 'Software',
-    image: 'https://placehold.co/720x420/06224a/ffffff?text=LetsFindPeople',
     description:
       'A people-search interface sample with structured cards, profile summaries, and simple filtering ideas.',
+    galleryImages: projectGallery('LetsFindPeople', [
+      'Search',
+      'Profiles',
+      'Filters',
+      'Details',
+    ]),
+    technologies: ['React', 'Node.js', 'MySQL', 'GitHub'],
+    websiteUrl: 'https://www.google.com',
+  },
+  {
+    title: 'Pixel Runner',
+    category: 'Video Games',
+    description:
+      'A small game prototype focused on responsive controls, simple level flow, and a clean scoring screen.',
+    galleryImages: projectGallery('Pixel Runner', [
+      'Gameplay',
+      'Menu',
+      'Level',
+      'Score',
+    ]),
+    technologies: ['JavaScript', 'HTML', 'CSS', 'Git'],
+    websiteUrl: 'https://www.google.com',
+  },
+  {
+    title: 'Workflow Plugin',
+    category: 'Plugins',
+    description:
+      'A plugin concept for organizing repetitive tasks with quick actions, saved settings, and reusable flows.',
+    galleryImages: projectGallery('Workflow Plugin', [
+      'Panel',
+      'Actions',
+      'Settings',
+      'Flow',
+    ]),
+    technologies: ['TypeScript', 'Node.js', 'PHP', 'GitHub'],
+    websiteUrl: 'https://www.google.com',
   },
 ]
 
@@ -51,20 +128,20 @@ const experience = [
 ]
 
 const skillIcons = [
-  ['C', 'https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg'],
-  ['Java', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'],
-  ['PHP', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg'],
-  ['HTML', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'],
-  ['CSS', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg'],
-  ['TypeScript', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg'],
-  ['JavaScript', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'],
-  ['Node.js', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'],
-  ['Angular', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg'],
-  ['React', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'],
-  ['PostgreSQL', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg'],
-  ['MySQL', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg'],
-  ['Git', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'],
-  ['GitHub', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg'],
+  ['C', technologyIcons.C],
+  ['Java', technologyIcons.Java],
+  ['PHP', technologyIcons.PHP],
+  ['HTML', technologyIcons.HTML],
+  ['CSS', technologyIcons.CSS],
+  ['TypeScript', technologyIcons.TypeScript],
+  ['JavaScript', technologyIcons.JavaScript],
+  ['Node.js', technologyIcons['Node.js']],
+  ['Angular', technologyIcons.Angular],
+  ['React', technologyIcons.React],
+  ['PostgreSQL', technologyIcons.PostgreSQL],
+  ['MySQL', technologyIcons.MySQL],
+  ['Git', technologyIcons.Git],
+  ['GitHub', technologyIcons.GitHub],
 ]
 
 function Home() {
@@ -72,10 +149,10 @@ function Home() {
   const introPanelRef = useRef(null)
   const introTrackRef = useRef(null)
   const [selectedProjectOption, setSelectedProjectOption] =
-    useState('Software')
+    useState('All')
 
   const visibleProjects =
-    selectedProjectOption === 'Software'
+    selectedProjectOption === 'All'
       ? projects
       : projects.filter((project) => project.category === selectedProjectOption)
 
@@ -94,13 +171,12 @@ function Home() {
         return
       }
 
-      const introHold = Math.min(window.innerHeight * 0.9, 860)
       const scrollDistance = Math.max(track.scrollHeight - panel.clientHeight, 0)
-      section.style.minHeight = `${window.innerHeight + introHold + scrollDistance}px`
+      section.style.minHeight = `${window.innerHeight + scrollDistance}px`
 
       const rect = section.getBoundingClientRect()
-      const scrollRange = section.offsetHeight - window.innerHeight - introHold
-      const activeScroll = Math.max(-rect.top - introHold, 0)
+      const scrollRange = section.offsetHeight - window.innerHeight
+      const activeScroll = Math.max(-rect.top, 0)
       const progress =
         scrollRange > 0 ? Math.min(Math.max(activeScroll / scrollRange, 0), 1) : 0
 
@@ -270,28 +346,107 @@ function Home() {
             </select>
           </div>
 
-          <div className="row g-4">
-            {visibleProjects.map((project) => (
-              <div className="col-md-6 col-lg-4" key={project.title}>
-                <article className="card h-100 border border-white bg-white text-primary">
-                  <img
-                    src={project.image}
-                    className="card-img-top"
-                    alt={`${project.title} sample project preview`}
-                  />
-                  <div className="card-body d-flex flex-column">
-                    <h3 className="h4 fw-bold">{project.title}</h3>
-                    <p className="fw-semibold mb-4">{project.description}</p>
-                    <a
-                      className="btn bg-primary text-white border-primary fw-semibold mt-auto"
-                      href="#contact"
+          <div className="project-scroll" aria-label="Project list">
+            {visibleProjects.map((project, index) => {
+              const carouselId = `projectCarousel${index}`
+
+              return (
+                <div className="project-scroll-item" key={project.title}>
+                  <article className="card h-100 border border-white bg-white text-primary project-card">
+                    <div
+                      id={carouselId}
+                      className="carousel slide project-cover-carousel"
+                      aria-label={`${project.title} preview carousel`}
                     >
-                      Ask About This
-                    </a>
-                  </div>
-                </article>
-              </div>
-            ))}
+                      <div className="carousel-indicators">
+                        {project.galleryImages.map((image, imageIndex) => (
+                          <button
+                            type="button"
+                            data-bs-target={`#${carouselId}`}
+                            data-bs-slide-to={imageIndex}
+                            className={imageIndex === 0 ? 'active' : undefined}
+                            aria-current={imageIndex === 0 ? 'true' : undefined}
+                            aria-label={`${project.title} preview ${
+                              imageIndex + 1
+                            }`}
+                            key={image.alt}
+                          ></button>
+                        ))}
+                      </div>
+
+                      <div className="carousel-inner">
+                        {project.galleryImages.map((image, imageIndex) => (
+                          <div
+                            className={`carousel-item ${
+                              imageIndex === 0 ? 'active' : ''
+                            }`}
+                            key={image.alt}
+                          >
+                            <img
+                              className="d-block w-100 project-cover-image"
+                              src={image.src}
+                              alt={image.alt}
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <button
+                        className="carousel-control-prev"
+                        type="button"
+                        data-bs-target={`#${carouselId}`}
+                        data-bs-slide="prev"
+                        aria-label={`Previous ${project.title} preview`}
+                      >
+                        <span
+                          className="carousel-control-prev-icon"
+                          aria-hidden="true"
+                        ></span>
+                      </button>
+                      <button
+                        className="carousel-control-next"
+                        type="button"
+                        data-bs-target={`#${carouselId}`}
+                        data-bs-slide="next"
+                        aria-label={`Next ${project.title} preview`}
+                      >
+                        <span
+                          className="carousel-control-next-icon"
+                          aria-hidden="true"
+                        ></span>
+                      </button>
+                    </div>
+
+                    <div className="card-body d-flex flex-column">
+                      <h3 className="h4 fw-bold">{project.title}</h3>
+                      <p className="fw-semibold mb-3">{project.description}</p>
+
+                      <p className="fw-bold mb-2">Made With:</p>
+                      <div className="d-flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((technology) => (
+                          <img
+                            className="project-tech-icon"
+                            src={technologyIcons[technology]}
+                            alt={technology}
+                            title={technology}
+                            key={technology}
+                          />
+                        ))}
+                      </div>
+
+                      <a
+                        className="btn bg-primary text-white border-primary fw-semibold mt-auto"
+                        href={project.websiteUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        View Website
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
