@@ -364,7 +364,7 @@ function Home({ locale }) {
       const scrollDistance = Math.max(track.scrollHeight - panel.clientHeight, 0)
       const targetOffset = Math.min(heroRow.offsetHeight, scrollDistance)
 
-      window.history.pushState(null, '', '#education')
+      window.history.pushState(null, '', '#about')
       window.scrollTo({
         top: sectionTop + targetOffset,
         behavior: 'smooth',
@@ -546,7 +546,7 @@ function Home({ locale }) {
                     </div>
 
                     <div className="intro-scroll-row intro-details-row">
-                      <div className="intro-detail-block" id="education">
+                      <div className="intro-detail-block" id="about">
                         <h2 className="display-6 fw-bold mb-4">{text.aboutTitle}</h2>
                         <p className="lead fw-semibold mb-0">
                           {text.aboutMe}{' '}
@@ -576,7 +576,7 @@ function Home({ locale }) {
                         </div>
                       </div>
 
-                      <div className="intro-detail-block">
+                      <div className="intro-detail-block" id="education">
                         <h2 className="display-6 fw-bold mb-4">{text.educationTitle}</h2>
                         {education.map((item) => (
                           <article

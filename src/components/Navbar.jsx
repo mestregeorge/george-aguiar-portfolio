@@ -54,7 +54,7 @@ function Navbar({ locale, onLocaleChange }) {
             </select>
             <a
               className="nav-link text-white fw-semibold"
-              href="#education"
+              href="#about"
               onClick={(event) => {
                 event.preventDefault()
                 window.dispatchEvent(new Event('portfolio:scroll-about'))
