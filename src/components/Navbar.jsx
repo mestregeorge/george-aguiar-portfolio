@@ -22,17 +22,17 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="portfolioNav">
           <div className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-            <a className="nav-link text-white fw-semibold" href="#projects">
-              Projects
-            </a>
             <a className="nav-link text-white fw-semibold" href="#education">
-              Education, Experience & Skills
+              More About Me
+            </a>
+            <a className="nav-link text-white fw-semibold" href="#projects">
+              View Projects
             </a>
             <a
               className="btn border border-2 border-white text-white fw-semibold ms-lg-2"
               href="#contact"
             >
-              Contact
+              Contact Me
             </a>
           </div>
         </div>

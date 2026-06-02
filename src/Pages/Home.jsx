@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import aesaLogo from '../assets/aesa.png'
+import georgeImage from '../assets/george.png'
+import limagroupLogo from '../assets/limagroup.png'
 
-const profileImage =
-  'https://placehold.co/520x520/06224a/ffffff?text=George+Aguiar'
+const profileImage = georgeImage
 
 const projectOptions = ['Software', 'Video Games', 'Plugins']
 
@@ -29,6 +31,9 @@ const projects = [
   },
 ]
 
+const aboutMe =
+  'Fluent in Portuguese and English. Known for attention to detail, organization, punctuality, a strong work ethic, and fast learning. I enjoy solving problems and building practical solutions through technology.'
+
 const education = [
   {
     role: 'Computer Systems Technician',
@@ -46,22 +51,26 @@ const experience = [
 ]
 
 const skillIcons = [
-  ['JavaScript', 'bi-filetype-js'],
-  ['Python', 'bi-filetype-py'],
-  ['Java', 'bi-filetype-java'],
-  ['HTML', 'bi-filetype-html'],
-  ['CSS', 'bi-filetype-css'],
-  ['React', 'bi-filetype-jsx'],
-  ['Node.js', 'bi-server'],
-  ['Express', 'bi-diagram-3'],
-  ['Django', 'bi-braces'],
-  ['MySQL', 'bi-database-fill'],
-  ['PostgreSQL', 'bi-database'],
-  ['MongoDB', 'bi-database-check'],
-  ['GitHub', 'bi-github'],
+  ['C', 'https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg'],
+  ['Java', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg'],
+  ['PHP', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg'],
+  ['HTML', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'],
+  ['CSS', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg'],
+  ['TypeScript', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg'],
+  ['JavaScript', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg'],
+  ['Node.js', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg'],
+  ['Angular', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg'],
+  ['React', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg'],
+  ['PostgreSQL', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg'],
+  ['MySQL', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg'],
+  ['Git', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg'],
+  ['GitHub', 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg'],
 ]
 
 function Home() {
+  const introSectionRef = useRef(null)
+  const introPanelRef = useRef(null)
+  const introTrackRef = useRef(null)
   const [selectedProjectOption, setSelectedProjectOption] =
     useState('Software')
 
@@ -70,39 +79,172 @@ function Home() {
       ? projects
       : projects.filter((project) => project.category === selectedProjectOption)
 
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+    }
+
+    const updateIntroProgress = () => {
+      const section = introSectionRef.current
+      const panel = introPanelRef.current
+      const track = introTrackRef.current
+
+      if (!section || !panel || !track) {
+        return
+      }
+
+      const introHold = Math.min(window.innerHeight * 0.9, 860)
+      const scrollDistance = Math.max(track.scrollHeight - panel.clientHeight, 0)
+      section.style.minHeight = `${window.innerHeight + introHold + scrollDistance}px`
+
+      const rect = section.getBoundingClientRect()
+      const scrollRange = section.offsetHeight - window.innerHeight - introHold
+      const activeScroll = Math.max(-rect.top - introHold, 0)
+      const progress =
+        scrollRange > 0 ? Math.min(Math.max(activeScroll / scrollRange, 0), 1) : 0
+
+      track.style.setProperty(
+        '--intro-offset',
+        `${-progress * scrollDistance}px`,
+      )
+    }
+
+    updateIntroProgress()
+    requestAnimationFrame(updateIntroProgress)
+    window.addEventListener('scroll', updateIntroProgress, { passive: true })
+    window.addEventListener('resize', updateIntroProgress)
+    window.addEventListener('load', updateIntroProgress)
+
+    return () => {
+      window.removeEventListener('scroll', updateIntroProgress)
+      window.removeEventListener('resize', updateIntroProgress)
+      window.removeEventListener('load', updateIntroProgress)
+    }
+  }, [])
+
   return (
     <main>
-      <section id="home" className="bg-white text-primary">
-        <div className="container py-5">
-          <div className="row align-items-center g-5 py-lg-5">
-            <div className="col-lg-7">
-              <h1 className="display-3 fw-bold lh-1 mb-4">
-                Welcome to George Aguiar's Portfolio
-              </h1>
-              <p className="lead fw-semibold mb-4">
-                Passionate about software development, artificial intelligence, and robotics. Aiming to build a fully automated world.
-              </p>
-              <div className="d-flex flex-wrap gap-3">
-                <a
-                  className="btn btn-lg bg-primary text-white border-primary fw-semibold"
-                  href="#projects"
-                >
-                  View Projects
-                </a>
-                <a
-                  className="btn btn-lg border border-2 border-primary text-primary fw-semibold"
-                  href="#contact"
-                >
-                  Contact Me
-                </a>
+      <section
+        id="home"
+        className="bg-white text-primary intro-scroll-section"
+        ref={introSectionRef}
+      >
+        <span className="intro-scroll-anchor intro-scroll-anchor-education" id="education"></span>
+        <div className="intro-sticky-frame">
+          <div className="container">
+            <div className="row align-items-center g-5">
+              <div className="col-lg-7">
+                <div className="intro-scroll-panel" ref={introPanelRef}>
+                  <div className="intro-scroll-track" ref={introTrackRef}>
+                    <div className="intro-scroll-row intro-hero-row">
+                      <h1 className="display-3 fw-bold lh-1 mb-4">
+                        Welcome to George Aguiar's Portfolio
+                      </h1>
+                      <p className="lead fw-semibold mb-4">
+                        Passionate about software development, artificial intelligence, and robotics. Aiming to build a fully automated world.
+                      </p>
+                      <div className="d-flex flex-wrap gap-3">
+                        <a
+                          className="btn btn-lg bg-primary text-white border-primary fw-semibold"
+                          href="#projects"
+                        >
+                          View Projects
+                        </a>
+                        <a
+                          className="btn btn-lg border border-2 border-primary text-primary fw-semibold"
+                          href="#contact"
+                        >
+                          Contact Me
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="intro-scroll-row intro-details-row">
+                      <div className="intro-detail-block">
+                        <h2 className="display-6 fw-bold mb-4">About Me</h2>
+                        <p className="lead fw-semibold mb-0">{aboutMe}</p>
+                      </div>
+
+                      <div className="intro-detail-block">
+                        <h2 className="display-6 fw-bold mb-4">Skills</h2>
+                        <div className="d-flex flex-wrap gap-3">
+                          {skillIcons.map(([label, iconSrc]) => (
+                            <img
+                              className="skill-brand-icon"
+                              src={iconSrc}
+                              alt={label}
+                              title={label}
+                              key={label}
+                            />
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="intro-detail-block">
+                        <h2 className="display-6 fw-bold mb-4">Education</h2>
+                        {education.map((item) => (
+                          <article
+                            className="card border-0 bg-white text-primary intro-info-row"
+                            key={item.role}
+                          >
+                            <div className="card-body p-0">
+                              <div className="row align-items-center g-0">
+                                <div className="col-auto">
+                                  <img
+                                    src={aesaLogo}
+                                    className="img-fluid"
+                                    alt="Escola Secundaria de Santo Andre logo"
+                                  />
+                                </div>
+                                <div className="col ps-3">
+                                  <h3 className="lead fw-bold mb-1">{item.role}</h3>
+                                  <p className="lead fw-bold mb-1">{item.entity}</p>
+                                  <p className="lead fw-semibold mb-0">{item.date}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+
+                      <div className="intro-detail-block">
+                        <h2 className="display-6 fw-bold mb-4">Work Experience</h2>
+                        {experience.map((item) => (
+                          <article
+                            className="card border-0 bg-white text-primary intro-info-row"
+                            key={item.role}
+                          >
+                            <div className="card-body p-0">
+                              <div className="row align-items-center g-0">
+                                <div className="col-auto">
+                                  <img
+                                    src={limagroupLogo}
+                                    className="img-fluid"
+                                    alt="LimaGroup Consulting logo"
+                                  />
+                                </div>
+                                <div className="col ps-3">
+                                  <h3 className="lead fw-bold mb-1">{item.role}</h3>
+                                  <p className="lead fw-bold mb-1">{item.entity}</p>
+                                  <p className="lead fw-semibold mb-0">{item.date}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-5 text-center">
-              <img
-                src={profileImage}
-                className="img-fluid rounded-circle border border-5 border-primary"
-                alt="Sample profile portrait for George Aguiar"
-              />
+              <div className="col-lg-5 text-center">
+                <img
+                  src={profileImage}
+                  className="img-fluid rounded-circle border border-5 border-primary"
+                  alt="George Aguiar"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -150,82 +292,6 @@ function Home() {
                 </article>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="education" className="bg-white text-primary">
-        <div className="container pt-5 pb-5">
-          <div className="row g-5">
-            <div className="col-lg-4">
-              <h2 className="display-6 fw-bold text-center mb-4">Education</h2>
-              {education.map((item) => (
-                <article
-                  className="card border-0 bg-white text-primary h-100"
-                  key={item.role}
-                >
-                  <div className="card-body p-0">
-                    <div className="row align-items-center">
-                      <div className="col-md-4 text-center">
-                        <img
-                          src="https://placehold.co/220x220/06224a/ffffff?text=AESA"
-                          className="img-fluid"
-                          alt="Sample AESA education logo"
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <h3 className="h4 fw-bold mb-3">{item.role}</h3>
-                        <p className="fs-5 fw-bold mb-2">{item.entity}</p>
-                        <p className="fw-semibold mb-0">{item.date}</p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="col-lg-4" id="experience">
-              <h2 className="display-6 fw-bold text-center mb-4">
-                Work Experience
-              </h2>
-              {experience.map((item) => (
-                <article
-                  className="card border-0 bg-white text-primary h-100"
-                  key={item.role}
-                >
-                  <div className="card-body p-0">
-                    <div className="row align-items-center">
-                      <div className="col-md-4 text-center">
-                        <img
-                          src="https://placehold.co/220x220/06224a/ffffff?text=LimaGroup"
-                          className="img-fluid"
-                          alt="Sample LimaGroup work logo"
-                        />
-                      </div>
-                      <div className="col-md-8">
-                        <h3 className="h4 fw-bold mb-3">{item.role}</h3>
-                        <p className="fs-5 fw-bold mb-2">{item.entity}</p>
-                        <p className="fw-semibold mb-0">{item.date}</p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="col-lg-4">
-              <h2 className="display-6 fw-bold text-center mb-4">Skills</h2>
-              <div className="d-flex flex-wrap justify-content-center gap-3">
-                {skillIcons.map(([label, icon]) => (
-                  <i
-                    className={`bi ${icon} fs-2`}
-                    aria-label={label}
-                    title={label}
-                    key={label}
-                  ></i>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>

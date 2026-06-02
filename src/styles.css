@@ -1,0 +1,69 @@
+.intro-scroll-section {
+  min-height: 100vh;
+  position: relative;
+}
+
+.intro-scroll-anchor {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.intro-scroll-anchor-education {
+  top: 100vh;
+}
+
+.intro-sticky-frame {
+  position: sticky;
+  top: 56px;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+}
+
+.intro-scroll-panel {
+  height: calc(100vh - 56px);
+  overflow: hidden;
+}
+
+.intro-scroll-track {
+  --intro-offset: 0px;
+  height: 100%;
+  transform: translate3d(0, var(--intro-offset), 0);
+  will-change: transform;
+}
+
+.intro-scroll-row {
+  box-sizing: border-box;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-hero-row {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.intro-info-row img {
+  max-width: 96px;
+}
+
+.intro-details-row {
+  justify-content: flex-start;
+  gap: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.intro-detail-block {
+  margin-bottom: 0;
+}
+
+.skill-brand-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+}
