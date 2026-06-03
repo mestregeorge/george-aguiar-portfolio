@@ -86,7 +86,7 @@ function Footer({ locale }) {
           {contacts.map(({ icon, value, href, ariaKey, external }) => (
             <div className="col-sm-6 col-lg-auto" key={value}>
               <a
-                className="d-flex align-items-center justify-content-center gap-2 fw-semibold text-white text-decoration-none"
+                className="d-flex align-items-center justify-content-center gap-2 fw-semibold text-white text-decoration-none footer-contact-link"
                 href={ariaKey === 'cv' ? cvPdf : href}
                 aria-label={text[ariaKey]}
                 target={external ? '_blank' : undefined}

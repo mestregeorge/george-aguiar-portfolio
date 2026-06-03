@@ -31,6 +31,7 @@ import waspeeProject3 from '../assets/Projects/waspee2.png'
 import waspeeProject4 from '../assets/Projects/waspee3.png'
 
 const profileImage = georgeImage
+const stackedIntroMediaQuery = '(max-width: 991.98px)'
 
 const projectOptions = ['Software', 'Video Games']
 
@@ -327,6 +328,12 @@ function Home({ locale }) {
         return
       }
 
+      if (window.matchMedia(stackedIntroMediaQuery).matches) {
+        section.style.minHeight = ''
+        track.style.setProperty('--intro-offset', '0px')
+        return
+      }
+
       const scrollDistance = Math.max(track.scrollHeight - panel.clientHeight, 0)
       section.style.minHeight = `${window.innerHeight + scrollDistance}px`
 
@@ -355,6 +362,15 @@ function Home({ locale }) {
       const heroRow = track?.querySelector('.intro-hero-row')
 
       if (!section || !panel || !track || !heroRow) {
+        return
+      }
+
+      if (window.matchMedia(stackedIntroMediaQuery).matches) {
+        window.history.pushState(null, '', '#about')
+        document.getElementById('about')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
         return
       }
 
@@ -518,18 +534,25 @@ function Home({ locale }) {
       >
         <div className="intro-sticky-frame">
           <div className="container">
-            <div className="row align-items-center g-5">
-              <div className="col-lg-7">
+            <div className="row align-items-center g-5 intro-layout">
+              <div className="col-lg-7 intro-content-column">
                 <div className="intro-scroll-panel" ref={introPanelRef}>
                   <div className="intro-scroll-track" ref={introTrackRef}>
                     <div className="intro-scroll-row intro-hero-row">
+                      <div className="intro-mobile-image d-lg-none text-center mb-4">
+                        <img
+                          src={profileImage}
+                          className="img-fluid rounded-circle border border-5 border-primary intro-profile-image"
+                          alt="George Aguiar"
+                        />
+                      </div>
                       <h1 className="display-3 fw-bold lh-1 mb-4">
                         {text.heroTitle}
                       </h1>
                       <p className="lead fw-semibold mb-4">
                         {text.heroIntro}
                       </p>
-                      <div className="d-flex flex-wrap gap-3">
+                      <div className="d-flex flex-wrap gap-3 intro-hero-actions">
                         <a
                           className="btn btn-lg bg-primary text-white border-primary fw-semibold"
                           href="#projects"
@@ -639,10 +662,10 @@ function Home({ locale }) {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-5 text-center">
+              <div className="col-lg-5 text-center d-none d-lg-block intro-desktop-image">
                 <img
                   src={profileImage}
-                  className="img-fluid rounded-circle border border-5 border-primary"
+                  className="img-fluid rounded-circle border border-5 border-primary intro-profile-image"
                   alt="George Aguiar"
                 />
               </div>
@@ -653,12 +676,12 @@ function Home({ locale }) {
 
       <section id="projects" className="bg-primary text-white">
         <div className="container py-5">
-          <div className="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+          <div className="d-flex flex-row justify-content-between align-items-center gap-3 mb-4 project-header">
             <div>
               <h2 className="display-6 fw-bold mb-0 text-white">{text.projectsTitle}</h2>
             </div>
             <select
-              className="form-select w-auto fw-semibold text-center"
+              className="form-select w-auto fw-semibold text-center project-category-select"
               aria-label={text.projectCategoryLabel}
               value={selectedProjectOption}
               onChange={(event) => setSelectedProjectOption(event.target.value)}

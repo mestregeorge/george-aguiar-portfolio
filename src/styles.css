@@ -1,3 +1,17 @@
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
 .intro-scroll-section {
   min-height: 100vh;
   position: relative;
@@ -40,6 +54,18 @@
   max-width: 96px;
 }
 
+.intro-info-row .row {
+  flex-wrap: nowrap;
+}
+
+.intro-info-row .col {
+  min-width: 0;
+}
+
+.intro-mobile-image .intro-profile-image {
+  max-width: 16rem;
+}
+
 .intro-details-row {
   justify-content: flex-start;
   gap: 3rem;
@@ -49,7 +75,15 @@
 
 .intro-detail-block {
   margin-bottom: 0;
+  min-width: 0;
   scroll-margin-top: 5rem;
+}
+
+.intro-scroll-section h1,
+.intro-scroll-section h2,
+.intro-scroll-section h3,
+.intro-scroll-section p {
+  overflow-wrap: break-word;
 }
 
 .skill-brand-icon {
@@ -66,6 +100,63 @@
   text-align: center;
 }
 
+.navbar-contact-button {
+  white-space: nowrap;
+}
+
+.navbar-toggler {
+  align-items: center;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  padding: 0.35rem 0.5rem;
+  width: 2.75rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.35);
+}
+
+.navbar-toggler-icon {
+  background-image: none !important;
+  border-bottom: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  display: inline-block;
+  height: 1rem;
+  position: relative;
+  width: 1.35rem;
+}
+
+.navbar-toggler-icon::before {
+  border-top: 2px solid #ffffff;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.footer-contact-link {
+  min-width: 0;
+}
+
+.footer-contact-link span {
+  overflow-wrap: anywhere;
+}
+
+.project-category-select {
+  min-width: 12rem;
+}
+
+.project-header {
+  min-width: 0;
+}
+
+.project-header h2 {
+  min-width: 0;
+}
+
 .project-scroll-shell {
   display: flex;
   flex-direction: column;
@@ -76,6 +167,7 @@
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
   scroll-padding-inline: 0;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -112,6 +204,15 @@
 
 .project-card {
   min-height: 100%;
+  overflow: hidden;
+}
+
+.project-card .card-body {
+  min-width: 0;
+}
+
+.project-card p {
+  overflow-wrap: break-word;
 }
 
 .project-cover-carousel {
@@ -149,13 +250,214 @@
 }
 
 @media (max-width: 991.98px) {
+  .navbar > .container {
+    gap: 0.75rem;
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+  }
+
+  .portfolio-navbar-nav {
+    align-items: stretch;
+    padding: 0.75rem 0 1rem;
+  }
+
+  .navbar-language-select {
+    max-width: none;
+    text-align: left;
+    width: 100% !important;
+  }
+
+  .navbar-contact-button {
+    margin-top: 0.25rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .intro-scroll-section {
+    min-height: auto !important;
+  }
+
+  .intro-sticky-frame {
+    align-items: stretch;
+    min-height: auto;
+    padding: 3.5rem 0;
+    position: static;
+  }
+
+  .intro-scroll-panel {
+    height: auto;
+    overflow: visible;
+  }
+
+  .intro-scroll-track {
+    height: auto;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .intro-scroll-row {
+    min-height: auto;
+  }
+
+  .intro-hero-row {
+    padding-bottom: 3rem;
+    padding-top: 0;
+  }
+
+  .intro-details-row {
+    gap: 2.75rem;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .project-scroll {
+    gap: 1rem;
+    scroll-padding-inline: 0.25rem;
+  }
+
   .project-scroll-item {
-    flex-basis: calc((100% - 1.5rem) / 2);
+    flex-basis: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .intro-sticky-frame {
+    padding: 3rem 0;
+  }
+
+  .intro-scroll-section .display-3 {
+    font-size: 3rem;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .intro-scroll-section .display-6,
+  #projects .display-6 {
+    font-size: 2rem;
+  }
+
+  .intro-hero-row {
+    padding-bottom: 2.5rem;
+  }
+
+  .intro-details-row {
+    gap: 2.25rem;
+  }
+
+  .skill-brand-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .project-category-select {
+    min-width: 11rem;
+  }
+
+  .project-scroll-shell {
+    gap: 1rem;
+  }
+
+  .project-scrollbar {
+    height: 0.6rem;
   }
 }
 
 @media (max-width: 575.98px) {
+  .intro-layout {
+    --bs-gutter-x: 1.5rem;
+  }
+
+  .intro-sticky-frame {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .intro-mobile-image .intro-profile-image {
+    border-width: 4px !important;
+    max-width: 12.5rem;
+  }
+
+  .intro-scroll-section .display-3 {
+    font-size: 2.45rem;
+  }
+
+  .intro-scroll-section .display-6,
+  #projects .display-6 {
+    font-size: 1.8rem;
+  }
+
+  .intro-hero-actions {
+    flex-direction: column;
+  }
+
+  .intro-hero-actions .btn {
+    width: 100%;
+  }
+
+  .intro-info-row img {
+    max-width: 72px;
+  }
+
+  .intro-info-row .lead {
+    font-size: 1rem;
+  }
+
   .project-scroll-item {
     flex-basis: 88%;
+  }
+
+  .project-cover-carousel .carousel-control-prev,
+  .project-cover-carousel .carousel-control-next {
+    width: 18%;
+  }
+
+  .project-tech-icon {
+    height: 1.55rem;
+    width: 1.55rem;
+  }
+
+  .footer-contact-link {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .intro-scroll-section .display-3 {
+    font-size: 2.1rem;
+  }
+
+  .intro-scroll-section .lead {
+    font-size: 1.05rem;
+  }
+
+  .skill-brand-icon {
+    height: 1.85rem;
+    width: 1.85rem;
+  }
+
+  .intro-info-row img {
+    max-width: 58px;
+  }
+
+  .intro-info-row .col {
+    padding-left: 0.75rem !important;
+  }
+
+  .project-category-select {
+    font-size: 0.95rem;
+    min-width: 9.5rem;
+  }
+
+  .project-scroll-item {
+    flex-basis: 92%;
+  }
+
+  .project-card .card-body {
+    padding: 1rem;
+  }
+
+  .footer-contact-link {
+    font-size: 0.9rem;
   }
 }

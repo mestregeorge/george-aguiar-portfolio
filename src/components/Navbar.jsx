@@ -42,7 +42,7 @@ function Navbar({ locale, onLocaleChange }) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="portfolioNav">
-          <div className="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <div className="navbar-nav ms-auto align-items-lg-center gap-lg-2 portfolio-navbar-nav">
             <select
               className="form-select border border-2 border-white bg-primary text-white fw-semibold me-lg-2 w-auto navbar-language-select"
               aria-label={text.languageAria}
@@ -66,7 +66,7 @@ function Navbar({ locale, onLocaleChange }) {
               {text.projects}
             </a>
             <a
-              className="btn border border-2 border-white text-white fw-semibold ms-lg-2"
+              className="btn border border-2 border-white text-white fw-semibold ms-lg-2 navbar-contact-button"
               href="#contact"
             >
               {text.contact}
